@@ -1,8 +1,6 @@
 package expr3;
 
-import javax.swing.*;
-
 public interface Observer {
 	
-	public void update(String status, ImageIcon car);
+	public void update(boolean isEastPass, boolean isSouthPass, boolean isWestPass, boolean isNorthPass, MainFrame frame) throws InterruptedException;
 }

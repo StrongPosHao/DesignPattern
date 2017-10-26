@@ -6,7 +6,11 @@ import javax.swing.*;
 public class TrafficLamp implements Subject {
 	
 	private ArrayList<Observer> observers;
-	private String status;
+	private boolean isEastPass;
+	private boolean isSouthPass;
+	private boolean isWestPass;
+	private boolean isNorthPass;
+	private MainFrame frame;
 	ImageIcon car;
 	
 	public TrafficLamp() {
@@ -26,19 +30,23 @@ public class TrafficLamp implements Subject {
 	}
 
 	@Override
-	public void notifyObservers() {
+	public void notifyObservers() throws InterruptedException {
 		for (int i = 0; i < observers.size(); i++) {
 			Observer observer = (Observer)observers.get(i);
-			observer.update(status, car);
+			observer.update(isEastPass, isSouthPass, isWestPass, isNorthPass, frame);
 		}
 	}
 	
-	public void statusChanged() {
+	public void statusChanged() throws InterruptedException {
 		notifyObservers();
 	}
 	
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(boolean isEastPass, boolean isSouthPass, boolean isWestPass, boolean isNorthPass, MainFrame frame) throws InterruptedException {
+		this.isEastPass = isEastPass;
+		this.isWestPass = isWestPass;
+		this.isSouthPass = isSouthPass;
+		this.isNorthPass = isNorthPass;
+		this.frame = frame;
 		statusChanged();
 	}
 	
