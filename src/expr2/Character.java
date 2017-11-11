@@ -1,4 +1,3 @@
-package expr2;
 
 /**
  * The Character class.
